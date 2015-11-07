@@ -1,0 +1,35 @@
+{
+  "name": "angularjs-seo-smo-metatags",
+  "version": "0.0.0",
+  "authors": [
+    "Emir Herrera <emir.herrera@imco.org.mx>"
+  ],
+  "description": "Search Engine Optimization and Social Media Optimization related metatags settings made easy for AngujarJS Apps.",
+  "main": "seo-smo-setter.js",
+  "keywords": [
+    "SEO",
+    "SMO",
+    "Social",
+    "Media",
+    "Optimization",
+    "Search",
+    "Engine",
+    "HTML",
+    "metatags",
+    "AngularJS",
+    "description",
+    "title",
+    "Tweeter",
+    "Share",
+    "Facebook"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "http://imco.org.mx/indices/competitividad_internacional_2015/introduccion",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
