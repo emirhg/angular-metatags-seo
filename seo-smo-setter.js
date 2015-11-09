@@ -53,7 +53,7 @@ angular.module('SEO-SMO', [])
         };
 
         var setTitle = function(title){
-            $('title').text(title)
+            $('title').text(title);
         }
 
         var setMetadata = function(metadata){
