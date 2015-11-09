@@ -3,24 +3,23 @@
 
 /**
  * @ngdoc service
- * @name indicesApp.seo
+ * @name SEO-SMO
  * @description para optimizar y social
- * # seo
- * Service in the indicesApp.
+ * # SEO-SMO
+ * Module with services for SEO y SMO
  */
 angular.module('SEO-SMO')
     .service('seo', function seo($rootScope) {
         // AngularJS will instantiate a singleton by calling "new" on this function
 
         /** Facebook SDK */
-        window.fbAsyncInit = function() {
+       window.fbAsyncInit = function() {
             FB.init({
-                appId: '141448832714787',
-                xfbml: true,
-                version: 'v2.0'
+                appId: null,
+                xfbml: null,
+                version: null
             });
         };
-
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {
