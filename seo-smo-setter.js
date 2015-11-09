@@ -8,29 +8,35 @@
  * # SEO-SMO
  * Module with services for SEO y SMO
  */
-angular.module('SEO-SMO')
-    .service('seo', function seo($rootScope) {
-        // AngularJS will instantiate a singleton by calling "new" on this function
+angular.module('SEO-SMO', [])
+    .provider('facebookSharer', function FacebookSharerProvider($windowProvider){
+        var window = $windowProvider.$get();
 
-        /** Facebook SDK */
-       window.fbAsyncInit = function() {
-            FB.init({
-                appId: null,
-                xfbml: null,
-                version: null
-            });
-        };
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = '//connect.facebook.net/en_US/sdk.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+        this.setAppId = function(appId){
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId: appId,
+                    xfbml: true,
+                    version: 'v2.0'
+                });
+            };
 
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = '//connect.facebook.net/en_US/sdk.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+        }
+
+        this.$get = [];
+    })
+    .run(function ($rootScope){
         $rootScope.fbShare = function(href) {
 
             if (typeof href === 'undefined') {
@@ -42,5 +48,4 @@ angular.module('SEO-SMO')
                 href: href
             }, function() {});
         };
-        /** End of Facebook SDK **/
     });
