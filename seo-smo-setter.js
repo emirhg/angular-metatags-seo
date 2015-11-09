@@ -110,14 +110,14 @@ angular.module('SEO-SMO', [])
         $rootScope.tweet = function (tweet){
             var text= "";
             if (typeof tweet ==='undefined'){
-                tweet= socialShare.tweet
+                tweet= socialShare.tweet;
             }
             if (typeof tweet === 'object'){
                 for(var key in tweet){
-                    text = text + "&"+key+"="+tweet[key];
+                    text = text + "&"+key+"="+encodeURIComponent(tweet[key]);
                 }
             }else if (typeof tweet === 'string'){
-                text = "text="+tweet
+                text = "text="+encodeURIComponent(tweet);
             }
             window.open("https://twitter.com/share?"+ text, "_blank");
 
