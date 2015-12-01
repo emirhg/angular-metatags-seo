@@ -123,7 +123,7 @@ angular.module('SEO', [])
     })
     .run(function (metatags, $rootScope, socialShare){
 
-        metatags.setDefaultTitle($('title').text(););
+        metatags.setDefaultTitle($('title').text());
         metatags.setDefaultDescription($('meta[name="description"]').attr('content'));
         $rootScope.$on('$routeChangeStart', function() {
             metatags.setDefaultTitle();
