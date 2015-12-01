@@ -34,7 +34,7 @@ angular.module('SEO', [])
             if (typeof title!== 'undefined'){
                 $('title').text(title);
             }else{
-                $('title').text(this.defaultTitle);
+                $('title').text(defaultTitle);
             }
         }
 
@@ -53,12 +53,12 @@ angular.module('SEO', [])
             }
         }
 
-        var getCurrentTitle = function(){
-            return $('title').text();
-        }
-
-        var setDefaultTitle = function(title){
-            defaultTitle = title;
+        var setDefaultTitle = function (title){
+            if (typeof title !== 'undefined'){
+                defaultTitle = title;
+            }else{
+                setTitle(defaultTitle);
+            }
         }
 
         var setDefaultDescription = function (description){
@@ -77,7 +77,6 @@ angular.module('SEO', [])
             setDefaultTitle: setDefaultTitle,
             setDefaultDescription: setDefaultDescription,
             setMetadata: setMetadata,
-            getCurrentTitle: getCurrentTitle
         }
 
     })
@@ -124,10 +123,10 @@ angular.module('SEO', [])
     })
     .run(function (metatags, $rootScope, socialShare){
 
-        metatags.setDefaultTitle(metatags.getCurrentTitle());
+        metatags.setDefaultTitle($('title').text(););
         metatags.setDefaultDescription($('meta[name="description"]').attr('content'));
         $rootScope.$on('$routeChangeStart', function() {
-            metatags.setTitle();
+            metatags.setDefaultTitle();
             metatags.setDefaultDescription();
         });
 
