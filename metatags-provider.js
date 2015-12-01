@@ -10,6 +10,10 @@
  */
 angular.module('SEO', [])
 .service('metatags', function(){
+
+        var defaultTitle = '';
+        var defaultDescription = '';
+
         var setMetatag = function(name, value){
             var meta = $('meta');
             switch (name){
@@ -27,7 +31,11 @@ angular.module('SEO', [])
         };
 
         var setTitle = function(title){
-            $('title').text(title);
+            if (typeof title!== 'undefined'){
+                $('title').text(title);
+            }else{
+                $('title').text(this.defaultTitle);
+            }
         }
 
         var setMetadata = function(metadata){
@@ -45,10 +53,31 @@ angular.module('SEO', [])
             }
         }
 
+        var getCurrentTitle = function(){
+            return $('title').text();
+        }
+
+        var setDefaultTitle = function(title){
+            defaultTitle = title;
+        }
+
+        var setDefaultDescription = function (description){
+            if (typeof description !== 'undefined'){
+                defaultDescription = description;
+            }else{
+                setMetatag('description', defaultDescription);
+            }
+        }
+
+
+
         return {
             setMetatag:setMetatag,
             setTitle: setTitle,
-            setMetadata: setMetadata
+            setDefaultTitle: setDefaultTitle,
+            setDefaultDescription: setDefaultDescription,
+            setMetadata: setMetadata,
+            getCurrentTitle: getCurrentTitle
         }
 
     })
@@ -93,7 +122,14 @@ angular.module('SEO', [])
         };
 
     })
-    .run(function ($rootScope, socialShare){
+    .run(function (metatags, $rootScope, socialShare){
+
+        metatags.setDefaultTitle(metatags.getCurrentTitle());
+        metatags.setDefaultDescription($('meta[name="description"]').attr('content'));
+        $rootScope.$on('$routeChangeStart', function() {
+            metatags.setTitle();
+            metatags.setDefaultDescription();
+        });
 
 
         $rootScope.fbShare = function(href) {
