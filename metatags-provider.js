@@ -121,7 +121,7 @@ angular.module('SEO', [])
         };
 
     })
-    .run(function (metatags, $rootScope, socialShare){
+    .run(function (metatags, $rootScope, socialShare, $location){
 
         metatags.setDefaultTitle($('title').text());
         metatags.setDefaultDescription($('meta[name="description"]').attr('content'));
@@ -149,11 +149,12 @@ angular.module('SEO', [])
                 tweet= socialShare.tweet;
             }
             if (typeof tweet === 'object'){
+                tweet.url = $location.absUrl();
                 for(var key in tweet){
                     text = text + "&"+key+"="+encodeURIComponent(tweet[key]);
                 }
             }else if (typeof tweet === 'string'){
-                text = "text="+encodeURIComponent(tweet);
+                text = "text="+encodeURIComponent(tweet)+"&url="+encodeURIComponent($location.absUrl(););
             }
             window.open("https://twitter.com/share?"+ text, "_blank");
 
