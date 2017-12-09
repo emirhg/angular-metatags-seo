@@ -154,7 +154,7 @@ angular.module('SEO', [])
                     text = text + "&"+key+"="+encodeURIComponent(tweet[key]);
                 }
             }else if (typeof tweet === 'string'){
-                text = "text="+encodeURIComponent(tweet)+"&url="+encodeURIComponent($location.absUrl(););
+                text = "text="+encodeURIComponent(tweet)+"&url="+encodeURIComponent($location.absUrl());
             }
             window.open("https://twitter.com/share?"+ text, "_blank");
 
