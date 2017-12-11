@@ -134,7 +134,7 @@ angular.module('SEO', [])
         $rootScope.fbShare = function(href) {
 
             if (typeof href === 'undefined') {
-                href = location.href;
+                href = $location.absUrl();
             }
             FB.ui({
                 method: 'share',
