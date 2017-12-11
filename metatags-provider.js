@@ -149,7 +149,9 @@ angular.module('SEO', [])
                 tweet= socialShare.tweet;
             }
             if (typeof tweet === 'object'){
+              if (if (typeof tweet.url !== 'string')){
                 tweet.url = $location.absUrl();
+              }
                 for(var key in tweet){
                     text = text + "&"+key+"="+encodeURIComponent(tweet[key]);
                 }
